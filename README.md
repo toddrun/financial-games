@@ -11,11 +11,11 @@ collection, send me a message. Or fork this and do what
 you will with the code.
 
 Things I want to learn or explore include:
-Javascript AMD and Node
-TDD unit testing modules
-BDD integration testing 
-Git
-HTML5 Canvas and Storage
+* Javascript AMD and Node
+* TDD unit testing modules
+* BDD integration testing 
+* Git
+* HTML5 Canvas and Storage
 
 In the end, I'm hoping to have a "game master" that
 can serve up any number of "participating games".
