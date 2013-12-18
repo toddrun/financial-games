@@ -1,31 +1,32 @@
 
 
-define (['jquery', 'finance', 'chart'], function($, finance, chart) {
+define ([
+         'jquery', 'finance', 'chart', 'libs/savings-game/scenario'
+         ], function($, finance, chart, scenario) {
 	
 	var years = [3, 5, 10, 15, 20, 30];
 	
 	var initialize = function() {
 		$(document).ready(function() {
+			var puzzle = scenario.generate();
+			var investment = puzzle.investments[0];
+			var dollars = investment.amount;
+			var percent = investment.rate;
+			var years = puzzle.terms[0];
 			
-			var dollars = getRandomInt(1, 50) * 1000;
-			var percent = getRandomInt(2, 12);
-			percent += getRandomInt(0, 3) * .25;
-			var term = years[getRandomInt(1, years.length) - 1];
-			
-			
-			var value = finance.calculateAccruedInterest(dollars, percent, term);
+			var value = finance.calculateAccruedInterest(dollars, percent, years);
 			value += dollars;
 			var formattedValue = finance.format(value, 'USD');
 			 
 			$('#initialinvestment').html(finance.format(dollars, 'USD'));
 			$('#interestrate').html(percent);
-			$('#term').html(term);
+			$('#years').html(years);
 			
 			$('#calcanswer').val(formattedValue);
 			
 			var valueArray = [0, value];
 			var data = {
-					labels: ['', term],
+					labels: ['', years],
 					datasets : [
 								{
 									fillColor : "rgba(220,220,220,0.5)",
