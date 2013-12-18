@@ -9,9 +9,8 @@ define (['jquery', 'finance', 'chart'], function($, finance, chart) {
 			
 			var dollars = getRandomInt(1, 50) * 1000;
 			var percent = getRandomInt(2, 12);
-			percent += getRandomInt(1, 4) * .25;
+			percent += getRandomInt(0, 3) * .25;
 			var term = years[getRandomInt(1, years.length) - 1];
-			
 			
 			
 			var value = finance.calculateAccruedInterest(dollars, percent, term);
