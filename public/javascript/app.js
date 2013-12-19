@@ -48,9 +48,9 @@ define ([
 					labels: yearLabels,
 					datasets : [
 								{
-									fillColor : "rgba(220,220,220,0.5)",
-									strokeColor : "rgba(220,220,220,1)",
-									pointColor : "rgba(220,220,220,1)",
+									fillColor : "rgba(152,251,152,0.5)",
+									strokeColor : "rgba(0,128,0,1)",
+									pointColor : "rgba(0,128,0,1)",
 									pointStrokeColor : "#fff",
 									data : valuePoints
 								}
