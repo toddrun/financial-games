@@ -6,6 +6,22 @@ define ([
 	
 	var years = [3, 5, 10, 15, 20, 30];
 	
+	var buildYears = function(solution) {
+		years = [];
+		solution.totals.forEach(function (total) {
+			years.push(total.term);
+		});
+		return years;
+	};
+	
+	var buildValues = function(solution) {
+		values = [];
+		solution.totals.forEach(function (total) {
+			values.push(total.value);
+		});
+		return values;
+	};
+	
 	var initialize = function() {
 		$(document).ready(function() {
 			var puzzle = scenario.generate();
@@ -14,8 +30,9 @@ define ([
 			var percent = investment.rate;
 			var years = puzzle.terms[0];
 			
-			var value = finance.calculateAccruedInterest(dollars, percent, years);
-			value += dollars;
+			var solution = scenario.evaluate(puzzle);
+			var value = solution.answers[0].value;
+			
 			var formattedValue = finance.format(value, 'USD');
 			 
 			$('#initialinvestment').html(finance.format(dollars, 'USD'));
@@ -24,35 +41,20 @@ define ([
 			
 			$('#calcanswer').val(formattedValue);
 			
-			var valueArray = [0, value];
+			var yearLabels = buildYears(solution);
+			var valuePoints = buildValues(solution);
+			
 			var data = {
-					labels: ['', years],
+					labels: yearLabels,
 					datasets : [
 								{
 									fillColor : "rgba(220,220,220,0.5)",
 									strokeColor : "rgba(220,220,220,1)",
 									pointColor : "rgba(220,220,220,1)",
 									pointStrokeColor : "#fff",
-									data : valueArray
+									data : valuePoints
 								}
-					]								
-					/*labels : ["","1","2","3","4","5","6"],
-					 datasets : [
-						{
-							fillColor : "rgba(220,220,220,0.5)",
-							strokeColor : "rgba(220,220,220,1)",
-							pointColor : "rgba(220,220,220,1)",
-							pointStrokeColor : "#fff",
-							data : [0,1,2,4,6,9,12]
-						},
-						{
-							fillColor : "rgba(151,187,205,0.5)",
-							strokeColor : "rgba(151,187,205,1)",
-							pointColor : "rgba(151,187,205,1)",
-							pointStrokeColor : "#fff",
-							data : [0, 1, 2, 3, 4, 5, 6]
-						}
-					]*/
+					]
 				};
 			
 			var options = {

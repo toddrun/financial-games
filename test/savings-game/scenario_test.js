@@ -59,6 +59,7 @@ define(['libs/savings-game/scenario'], function(scenario) {
 		
 		it ('uses monthly compounding', function() {
 			//Tests values from https://etax.dor.ga.gov/ptd/gcp/LGS_GCP_Review_of_Income_May_2010_Page_184_187.pdf
+			//Can also use http://investor.gov/tools/calculators/compound-interest-calculator
 			assert.equal(1.10, calculateValueOf(scenario, 1, 10, 1));
 			assert.equal(1.08, calculateValueOf(scenario, 1, 8, 1));
 			assert.equal(11047.13, calculateValueOf(scenario, 10000, 10, 1));
