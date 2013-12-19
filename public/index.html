@@ -8,14 +8,22 @@
 		<h1>Get ready for some fun and fortune!</h1>
 		
 		<br />
-		<p>
+		<div class="question">
 			<span id="initialinvestment"></span> at 
 			<span id="interestrate"></span>% for 
 			<span id="years"></span> years: 
-			<input id="calcanswer" type="text" value=" " />
-		</p>
-		
-		<canvas id="chart" width="600" height="400"></canvas>
+			<input id="guess" type="text" value=" " />
+			<input id="submit" value="go" type="button" />
+		</div>
+		<div class="solution">
+			Your answer: <span id="answer"></span><br />
+			Actual answer: <span id="actual"></span><br />
+			Difference: <span id="difference"></span><br />
+			<input type="button" value="Try Again" onClick="window.location.href=window.location.href">
+		</div>
+		<div class="chart">
+			<canvas id="chart" width="600" height="400"></canvas>
+		</div>
 	</body>
 
 </html>
