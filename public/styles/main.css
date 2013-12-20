@@ -1,3 +1,7 @@
+#question {
+	float: left;
+}
+
 canvas {
     padding-left: 0;
     padding-right: 0;
@@ -5,4 +9,14 @@ canvas {
     margin-right: auto;
     display: block;
     width: 800px;
+}
+
+#slider {
+	margin-left: 50;
+	float:left;
+}
+
+#solution {
+	clear: both;
+	display: none;
 }

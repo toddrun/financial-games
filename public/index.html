@@ -3,26 +3,32 @@
 		<title>Interest</title>
 		<script data-main="javascript/main" src="javascript/vendor/RequireJs/require.js"></script>
 		<link type="text/css" href="styles/main.css" rel="stylesheet" />
+		<link type="text/css" href="styles/jQuery.ui.1.10.3.min/jquery-ui.min.css" rel="stylesheet" />
 	</head>
 	<body>
 		<h1>Get ready for some fun and fortune!</h1>
 		
 		<br />
-		<div class="question">
-			<span id="initialinvestment"></span> at 
-			<span id="interestrate"></span>% for 
-			<span id="years"></span> years: 
-			<input id="guess" type="text" value=" " />
-			<input id="submit" value="go" type="button" />
-		</div>
-		<div class="solution">
-			Your answer: <span id="answer"></span><br />
-			Actual answer: <span id="actual"></span><br />
-			Difference: <span id="difference"></span><br />
-			<input type="button" value="Try Again" onClick="window.location.href=window.location.href">
-		</div>
-		<div class="chart">
-			<canvas id="chart" width="600" height="400"></canvas>
+		<div class="container">
+			<div id="question">
+				<span id="initialinvestment"></span> at 
+				<span id="interestrate"></span>% for 
+				<span id="years"></span> years: 
+				<input id="guess" type="text" value=" " />
+				<input id="submit" value="go" type="button" />
+			</div>
+			<div id="solution">
+				Your answer: <span id="answer"></span><br />
+				Actual answer: <span id="actual"></span><br />
+				Difference: <span id="difference"></span><br />
+				<input type="button" value="Try Again" onClick="window.location.href=window.location.href">
+			</div>
+			<div id="slider">
+				<div id="slider-vertical" style="height:200px;"></div>
+			</div>
+			<div class="chart-container">
+				<canvas id="chart" width="600" height="400"></canvas>
+			</div>
 		</div>
 	</body>
 
