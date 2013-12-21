@@ -5,7 +5,8 @@ define ([
          ], function($, ui, finance, chart, scenario) {
 	
 	var years = [3, 5, 10, 15, 20, 30];
-	var puzzle = null;
+	var puzzle = null,
+		solution = null;
 	
 	var buildYears = function(solution) {
 		years = [];
@@ -26,20 +27,10 @@ define ([
 	var initialize = function() {
 		$(document).ready(function() {
 			
-			$( "#slider-vertical" ).slider({
-			      orientation: "vertical",
-			      range: "min",
-			      height: 400,
-			      min: 60,
-			      max: 1500000,
-			      value: 10000,
-			      slide: function( event, ui ) {
-			        $( "#guess" ).val( ui.value );
-			      }
-			    });
-			
 			puzzle = scenario.generate();
+			solution = scenario.evaluate(puzzle);
 			
+			//Populate question
 			var investment = puzzle.investments[0];
 			var dollars = investment.amount;
 			var percent = investment.rate;
@@ -51,21 +42,40 @@ define ([
 			
 			$('#submit').on('click', processGuess);
 			
+			//Build slider
+			
+			var value = solution.answers[0].value;
+			var max = Math.round(value * (Math.random() + 1));
+			
+			$('#guess').val(finance.format(dollars, 'USD'));
+			$('#max').html(finance.format(max, 'USD'));
+			$('#min').html(finance.format(dollars, 'USD'));
+			
+			console.log(value + " => " + max);
+			$( "#slider-vertical" ).slider({
+			      orientation: "vertical",
+			      range: "min",
+			      height: 400,
+			      min: dollars,
+			      max: max,
+			      value: dollars,
+			      slide: function( event, ui ) {
+			        $( "#guess" ).val(finance.format(ui.value, 'USD'));
+			      }
+			    });
 		});
 	};
 	
-	var processGuess = function(solution) {
+	var processGuess = function() {
 
 		$('#slider').hide();
 		$('#solution').show();
 		
-		var solution = scenario.evaluate(puzzle);
-		
 		var value = solution.answers[0].value;
 		var formattedValue = finance.format(value, 'USD');
 		 
-		var guess = $('#guess').val();
-		//TODO: Strip out $ and ,
+		//Strip out $ and ,
+		var guess = $('#guess').val().replace(/,/g , "").replace(/\$/g , "");
 		var formattedGuess = finance.format(guess, 'USD');
 		if (formattedGuess === '$NaN') {
 			guess = 0;

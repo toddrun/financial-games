@@ -2,6 +2,20 @@
 	float: left;
 }
 
+#slider-vertical {
+	float: right;
+}
+
+#max {
+	float: left;
+	margin-right: 10;
+}
+
+#min {
+	clear: both;
+	margin-right: 10;
+}
+
 canvas {
     padding-left: 0;
     padding-right: 0;
@@ -19,4 +33,7 @@ canvas {
 #solution {
 	clear: both;
 	display: none;
+	float: left;
+	margin-left: 50;
+	margin-top: 100;
 }
