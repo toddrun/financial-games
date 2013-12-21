@@ -86,6 +86,10 @@ define ([
 		$('#actual').html(formattedValue);
 		$('#difference').html(finance.format(guess - value, 'USD'));
 		
+		$('#submit').val('Try Again').on('click', function() {
+			window.location.href=window.location.href;
+		});
+		
 		var yearLabels = buildYears(solution);
 		var valuePoints = buildValues(solution);
 		
