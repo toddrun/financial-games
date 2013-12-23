@@ -18,7 +18,7 @@ require(['require', 'chai', 'mocha'], function(require, chai) {
 	 mocha.setup('bdd');
 	 
 	 require([
-	          './savings-game/scenario_test.js'
+	          './savings-game/puzzle_test.js'
 	          ],
 	     function() {
 		 	mocha.run();

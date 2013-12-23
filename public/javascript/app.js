@@ -1,11 +1,11 @@
 
 
 define ([
-         'jquery', 'jqueryui', 'finance', 'chart', 'libs/savings-game/scenario'
-         ], function($, ui, finance, chart, scenario) {
+         'jquery', 'jqueryui', 'finance', 'chart', 'libs/savings-game/puzzle'
+         ], function($, ui, finance, chart, puzzle) {
 	
 	var years = [3, 5, 10, 15, 20, 30];
-	var puzzle = null,
+	var scenario = null,
 		solution = null;
 	
 	var buildYears = function(solution) {
@@ -27,14 +27,14 @@ define ([
 	var initialize = function() {
 		$(document).ready(function() {
 			
-			puzzle = scenario.generate();
-			solution = scenario.evaluate(puzzle);
+			scenario = puzzle.generate();
+			solution = puzzle.solve(scenario);
 			
 			//Populate question
-			var investment = puzzle.investments[0];
+			var investment = scenario.investments[0];
 			var dollars = investment.amount;
 			var percent = investment.rate;
-			var years = puzzle.terms[0];
+			var years = scenario.terms[0];
 			
 			$('#initialinvestment').html(finance.format(dollars, 'USD'));
 			$('#interestrate').html(percent);
@@ -43,7 +43,6 @@ define ([
 			$('#submit').on('click', processGuess);
 			
 			//Build slider
-			
 			var value = solution.answers[0].value;
 			var max = Math.round(value * (Math.random() + 1));
 			
@@ -51,7 +50,6 @@ define ([
 			$('#max').html(finance.format(max, 'USD'));
 			$('#min').html(finance.format(dollars, 'USD'));
 			
-			console.log(value + " => " + max);
 			$( "#slider-vertical" ).slider({
 			      orientation: "vertical",
 			      range: "min",
@@ -85,6 +83,11 @@ define ([
 		$('#answer').html(formattedGuess);
 		$('#actual').html(formattedValue);
 		$('#difference').html(finance.format(guess - value, 'USD'));
+		
+		var guessObj = [{term: scenario.terms[0], value: guess}];
+		var points = puzzle.score(scenario, guessObj);
+		
+		$('#points').html(points);
 		
 		$('#submit').val('Try Again').on('click', function() {
 			window.location.href=window.location.href;
