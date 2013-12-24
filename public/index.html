@@ -6,16 +6,20 @@
 		<link type="text/css" href="styles/jQuery.ui.1.10.3.min/jquery-ui.min.css" rel="stylesheet" />
 	</head>
 	<body>
-		<h1>Get ready for some fun and fortune!</h1>
+		<h1>How much would you make if you invested . . . </h1>
 		
 		<br />
 		<div class="container">
+			<div id="totalpoints">
+				Total Points:
+				<input id="total" type="text" disabled="true" value="0" />
+			</div>
 			<div id="question">
 				<span id="initialinvestment"></span> at 
 				<span id="interestrate"></span>% for 
-				<span id="years"></span> years: 
+				<span id="years"></span> years? <br />
 				<input id="guess" type="text" value=" " />
-				<input id="submit" value="go" type="button" />
+				<input id="process" value="   go   " type="button" />
 			</div>
 			<div id="solution">
 				Your answer: <span id="answer"></span><br />

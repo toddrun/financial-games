@@ -24,6 +24,27 @@ define ([
 		return values;
 	};
 	
+	var getTotalPoints = function() {
+		var name = window.name;
+		console.log('name = ' + name);
+		if (name.slice(0, 4) == 'f-g_') {
+			console.log('matched = ' + name);
+			var float = parseFloat(name.replace(/f-g_/g, ''));
+			if (float != 'NaN') {
+				console.log("Got points: " + float);
+				return float;
+			}
+		}
+		console.log("Got 0 points");
+		return 0;
+	}
+	
+	var setTotalPoints = function(points) {
+		var value = points.toFixed(2);
+		window.name = 'f-g_' + value;
+		$('#total').val(value);
+	}
+	
 	var initialize = function() {
 		$(document).ready(function() {
 			
@@ -40,7 +61,11 @@ define ([
 			$('#interestrate').html(percent);
 			$('#years').html(years);
 			
-			$('#submit').on('click', processGuess);
+			var previousPoints = getTotalPoints();
+			console.log("Inited with previous points: " + previousPoints);
+			setTotalPoints(previousPoints);
+			
+			$('#process').on('click', processGuess);
 			
 			//Build slider
 			var value = solution.answers[0].value;
@@ -84,12 +109,16 @@ define ([
 		$('#actual').html(formattedValue);
 		$('#difference').html(finance.format(guess - value, 'USD'));
 		
-		var guessObj = [{term: scenario.terms[0], value: guess}];
-		var points = puzzle.score(scenario, guessObj);
+		var answer = [{term: scenario.terms[0], value: guess}];
+		var points = puzzle.score(scenario, answer);
 		
 		$('#points').html(points);
 		
-		$('#submit').val('Try Again').on('click', function() {
+		var previousTotal = getTotalPoints();
+		console.log("Got previous points while processing guess: " + previousTotal + " + " + points);
+		setTotalPoints(points + previousTotal);
+		
+		$('#process').val('Try Again').unbind('click').on('click', function() {
 			window.location.href=window.location.href;
 		});
 		

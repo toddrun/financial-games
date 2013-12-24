@@ -1,3 +1,7 @@
+#totalpoints {
+	float: right;
+}
+
 #question {
 	float: left;
 }
