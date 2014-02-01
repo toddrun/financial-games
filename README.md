@@ -28,4 +28,4 @@ game master can interact with the participant. I'm not
 master can provide any benefit to a participating
 game, but it should be an interesting challenge.
 
-You can see the current game in action <a href="https://github.com/toddrun/financial-games.git">here</a>
+You can see the current game in action <a href="http://icodeforfun.com/financialgames/">here</a>
