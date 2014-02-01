@@ -27,3 +27,5 @@ game master can interact with the participant. I'm not
 100% certain how this will work, or even if the game 
 master can provide any benefit to a participating
 game, but it should be an interesting challenge.
+
+You can see the current game in action <a href="https://github.com/toddrun/financial-games.git">here</a>
